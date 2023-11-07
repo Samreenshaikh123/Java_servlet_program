@@ -1,0 +1,110 @@
+	 Write a JSP program to implement verification of a particular user login and display a welcome page.
+
+File name: login.jsp
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>user verification</title>
+    </head>
+    <body bgcolor="pink">
+        <form action="validation.jsp">
+            <h1> User Verification Page</h1>
+<table border="0">
+<tr>
+<td> USER ID: </td>
+<td>
+<input type="text" name="uname" /> <br>
+</td>
+</tr>
+<tr>
+<td> PASSWORD: </td>
+<td>
+<input type="password" name="password" /> <br>
+</td>
+</tr>
+<tr> <td align ="center">
+<input type="submit" value="submit" >
+<input type="reset" value="reset">
+</td>
+</tr>
+</form>
+    </body>
+</html>
+
+
+
+
+File name: validation.jsp
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>validation JSP Page</title>
+    </head>
+    <body>
+        <%! String uid="student"; %>
+<%! String pass="jss123"; %>
+<%! String id, password; %>
+<% id=request.getParameter("uname"); %>
+<% password=request.getParameter("password"); %>
+<% if(uid.equals(id)&&pass.equals(password))
+{
+%>
+<jsp:forward page="welcome.jsp"/>
+<%
+}else
+{%>
+<jsp:forward page="error.jsp" /> 
+<%}%>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+File name: welcome.jsp
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>welcome JSP Page</title>
+    </head>
+    <body bgcolor="pink">
+        <center>
+<%! String id; %>
+<% id=request.getParameter("uname"); %>
+<h1> welcome <%=id%> to the home page </h1>
+</center>
+    </body>
+</html>
+
+File name: error.jsp
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>error JSP Page</title>
+    </head>
+    <body bgcolor="pink">
+       <h1>INVALID User...</h1>
+    </body>
+</html>
